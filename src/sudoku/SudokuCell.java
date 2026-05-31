@@ -17,4 +17,7 @@ public class SudokuCell {
     public boolean isEmpty(){
         return value == 0;
     }
+    public void setValue(int value) {
+    this.value = value;
+}
 }

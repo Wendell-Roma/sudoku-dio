@@ -69,8 +69,61 @@ public class SudokuBoard {
     public void clearBoard() {
     for (int i = 0; i < 9; i++) {
         for (int coluna = 0; coluna < 9; coluna++) {
-            
+            SudokuCell celula = board[i][coluna]; 
+            if (!celula.isFixed()) {
+                celula.setValue(0);
+                }
+            }
         }
     }
-}
+    public boolean isComplete() {
+        for (int i = 0; i < 9; i++) {
+            for (int coluna = 0; coluna < 9; coluna++) {
+                SudokuCell celula = board[i][coluna];
+                if (celula.isEmpty()) {
+                    return false;
+                }    
+            }
+        }
+        return true;
+    }
+    public boolean hasErrors() {
+
+    for (int i = 0; i < 9; i++) {
+        boolean[] visto = new boolean[10];
+        for (int coluna = 0; coluna < 9; coluna++) {
+            int val = board[i][coluna].getValue();
+            if (val != 0) {
+                if (visto[val]) return true;
+                visto[val] = true;
+            }
+        }
+    }
+
+    for (int coluna = 0; coluna < 9; coluna++) {
+        boolean[] visto = new boolean[10];
+        for (int i = 0; i < 9; i++) {
+            int val = board[i][coluna].getValue();
+            if (val != 0) {
+                if (visto[val]) return true;
+                visto[val] = true;
+            }
+        }
+    }
+    for (int blocoLinha = 0; blocoLinha < 9; blocoLinha += 3) {
+    for (int blocoColuna = 0; blocoColuna < 9; blocoColuna += 3) {
+        boolean[] visto = new boolean[10];
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                int val = board[blocoLinha + i][blocoColuna + j].getValue();
+                if (val != 0) {
+                    if (visto[val]) return true;
+                    visto[val] = true;
+                }
+            }
+        }
+    }
+    }
+    return false;
+    }
 }
