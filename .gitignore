@@ -1,0 +1,16 @@
+# Compilados Java
+*.class
+*.jar
+
+# Pasta de build (IntelliJ/Eclipse/VSCode)
+bin/
+out/
+build/
+.classpath
+.project
+.settings/
+*.iml
+.idea/
+
+# VS Code
+.vscode/
